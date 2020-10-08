@@ -18,6 +18,7 @@ app.use(
 //const mongouri="mongodb://127.0.0.1:27017/TestDatabase";
 
 // Mongodb Atlas url for connecting database
+// Changes by Pradip Mehta
 const mongouri="mongodb://kalp0402:kalp0402@cluster0-shard-00-00.dag01.mongodb.net:27017,cluster0-shard-00-01.dag01.mongodb.net:27017,cluster0-shard-00-02.dag01.mongodb.net:27017/TestDatabase?ssl=true&replicaSet=atlas-cktky5-shard-0&authSource=admin&retryWrites=true&w=majority"
 mongoose.connect(mongouri, {
   useFindAndModify: false,

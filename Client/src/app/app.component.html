@@ -1,0 +1,78 @@
+<!-- <nav class="navbar navbar-expand-lg narbar-dark bg-dark rounded" *ngIf="auth.isLoggedIn()">
+  <button class="navbar-toggler"
+  type="button"
+  data-toggle="collapse"
+  data-target="#navbarexample"
+  arial-controls="navbarexample">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-md-center" id="navbarexample">
+    <ul class="navbar-nav">
+      <li class="navbar-item" >
+        <a class="nav-link" routerLink="/Home">Home</a>
+      </li>
+      <li class="navbar-item" *ngIf="!auth.isLoggedIn()" >
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li class="navbar-item" *ngIf="!auth.isLoggedIn()" >
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
+      <li class="navbar-item" *ngIf="auth.isLoggedIn()" >
+        <a class="nav-link" routerLink="/profile">{{auth.getUserDetails()?.first_name}}</a>
+      </li>
+      <li class="navbar-item" *ngIf="auth.isLoggedIn()" >
+        <a class="nav-link" routerLink="" (click)="auth.logout()">LogOut</a>
+      </li>
+
+    </ul>
+  </div>
+</nav> -->
+
+<!-- <div class="container">
+  <div class="ui  menu">
+    <a class="active item">
+      <i class="sidebar icon"></i> Menu
+    </a>
+    <a class="">
+      <h4>Welcome to Black and White Status Reporting</h4>
+    </a>
+   
+
+    <div class="item right menu">
+      <form method=post action="/task/search">
+        <div class="ui icon input">
+
+          <input type="text" placeholder="Search..." name="txtsearch">
+          <i class="search link icon"></i>
+
+        </div>
+      </form>
+    </div>
+    <div class="item right">
+      <div class="segment basic">
+
+      </div>
+      <div class="ui menu  simple scrolling">
+        <div class="ui simple dropdown item borderless">
+          <a href="#">Signed in as {{auth.getUserDetails()?.email}}</a>
+          <i class="dropdown icon"></i>
+          <div class="menu ">
+            <div class="item"><i class="user outline icon"></i><a href="/Profile"> Edit Profile </a></div>
+            <div class="item"><i class="power off icon"></i><a routerLink="" (click)="auth.logout()">Signout</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui inverted vertical footer segment form-page">
+  <div class="ui container">
+    Copyright PM AM Corporation - 2020
+  </div>
+</div> -->
+<router-outlet></router-outlet>
+
+<alert></alert>
+

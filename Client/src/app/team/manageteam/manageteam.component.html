@@ -1,0 +1,51 @@
+<div class="container" *ngIf="auth.isLoggedIn()">
+    <div class="pusher ">
+        <div class="container">
+            <div class="ui grid stackable">
+                <!-- row 1 -->
+                <div class="sixteen wide column"></div>
+                <div class="one wide column"></div>
+             
+                <div class="sixteen wide column">
+                    <h4 class=" ui " style=" background-color: #303030;color: white;">
+                    <i class="users icon"></i>
+                    Manage Users</h4>
+                </div>
+            
+                <div class="one wide column"></div>
+                <div class="sixteen wide column">
+                    <table class="ui sortable celled table grey table" style="width:1000px !important;" >
+                        <thead>
+                            <tr class="ui black">
+                                <th>User Name</th>
+                                <th>Projects</th>
+                                <th class="right aligned">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="ui black" *ngFor="let objProfile of profileDetails; let indexOfelement=index;">
+                                <td >
+                                    {{ objProfile.username }}
+                                </td>
+                                <td>
+                                    <select [(ngModel)]="objProfile.projectName">
+                                        <option *ngFor="let projects of projectDetails">
+                                            {{projects.ProjectName }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td class="right aligned">
+                                    <form (submit)="saveTeam(indexOfelement)">
+                                        <button class="ui basic button" type="submit">
+                                            <i class="save icon"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

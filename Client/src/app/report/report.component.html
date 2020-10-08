@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="pusher">
+        <div class="container">
+            <div class="ui grid stackable">
+                <!-- row 1 -->
+                <div class="sixteen wide column"></div>
+                <div class="one wide column"></div>
+                <div class="sixteen wide column">
+                    <h4 class="ui " style="background-color: #303030;color: white;">
+                        <i class="chart bar icon"></i>
+                        Daily Task Report</h4>
+                </div>
+                <!-- row 2 -->
+                <div class="three wide column"></div>
+                <div class="ten wide column">
+                    <div class="ui form">
+                        <div class="inline fields">
+                            <form (submit)="getReport()">
+                                <div class="ui field">
+                                    <label>Select Date</label>
+                                </div>
+                                <div class="ui calendar inline fields" id="example1">
+                                    <div class="ui input left icon">
+                                        <i class="calendar icon"></i>
+                                        <input id="txtDate" name="txtDate" type="date" placeholder="Date/Time"
+                                            [(ngModel)]="reportSearch.date">
+                                    </div>
+                                    <div class="ui input">
+                                        <select id="project" name="project" class="ui dropdown"
+                                            [(ngModel)]="reportSearch.projectName">
+                                            <!-- <%- optionString %> -->
+                                            <option *ngFor="let project of projectDetails">{{project.ProjectName}}
+                                            </option>
+                                        </select>
+                                    </div>&nbsp;
+                                    <div class="ui field" style="width:200px !important;">
+                                        <button class="ui black submit button" type="submit"> Get Task </button></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="taskInformation !=undefined">
+                <div class="sixteen wide column">
+                    <div id="divfloat" class="four wide column  align center">
+                        <div class="ui " data-content="Add your todays task here.">
+                            <h3>My To-Do List <i class="fa fa-plus"></i></h3>
+                        </div>
+                        <ul *ngFor="let taskInfo of taskInformation.tasks1">
+                            <li style='height: 40px;'>
+                                <div class="ui flexbox regular menu inline fields">
+                                    &nbsp;
+                                    <div id="lielements" name="lielements" class="lielements" style='height: 40px;'>
+                                        {{taskInfo.description}} -- {{taskInfo.status}} </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="divfloat" class="four wide column  align center"
+                        *ngFor="let outertaskInfo of taskInformation.tasks2 | filterUnique">
+                        <h3>{{outertaskInfo.userid}} To-Do List </h3>
+                        <ul *ngFor="let taskInfo of taskInformation.tasks2">
+                            <ng-container *ngIf="taskInfo.userid == outertaskInfo.userid">
+                                <li style='height: 40px;'>
+                                    <div class="ui flexbox regular menu inline fields">
+                                        &nbsp; {{taskInfo.description}} -- {{taskInfo.status}}
+                                    </div>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,86 @@
+<br>
+<br>
+<h1>Black & White</h1>
+<h2>Nothing in Between</h2>
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2>
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <form class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="email" name="email" placeholder="E-mail address" [(ngModel)]="credentials.username"
+              formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required"></div>
+                <div *ngIf="f.email.errors.pattern"></div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password"
+              formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            
+          </div>
+        </div>
+         <button type="submit"  class="ui fluid large black submit button">Login</button>
+      </div>
+      <div class="ui error message"  >
+        <span>Email or password not valid</span></div>
+    </form>
+
+    <div class="ui message"  >
+      New to us? <a routerLink="/register">Sign Up</a>
+    </div>
+  </div>
+</div>
+ <!-- <link rel="stylesheet" type="text/css" href="/assets/css/todo.css"> -->
+
+<style type="text/css">
+  body>.grid {
+    height: 60%;
+  }
+
+  .column {
+    max-width: 450px;
+  }
+</style>
+
+
+
+<!-- <div class="container"> 
+    <div class="row">
+        <div class="col-md-6 mt-5 mx-auto">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <div class="form-group">
+                     <label for="email">Email Address</label> 
+                    <input type="email" class="form-control" name="email" placeholder="Enter Email"
+                    [(ngModel)]="credentials.username" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                      <div *ngIf="f.email.errors.pattern">Email is not valid</div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="email">Password</label> 
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password"
+                    [(ngModel)]="credentials.password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+                </div>
+                <button [disabled]="loading" class="btn btn-primary" type="submit" class="btn btn-lg btn-primary btn-block"><span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Sign IN</button>
+                <button  class="btn btn-lg btn-primary btn-block" routerLink="/register">SignUp</button>
+            </form>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,67 @@
+<div class="container" *ngIf="auth.isLoggedIn()">
+    <div class="pusher ">
+        <div class="container">
+            <div class="ui grid stackable">
+                <!-- row 1 -->
+                <div class="sixteen wide column"></div>
+                <div class="one wide column"></div>
+                <div class="sixteen wide column">
+                    <h4  style="background-color: #303030;color: white;">
+                        <i class="th icon"></i>
+                        Manage Projects</h4>
+                </div>
+                <div class="sixteen wide column">
+                    <table class="ui sortable celled table grey table" style="width:1000px !important;">
+                        <thead>
+                            <tr>
+                                <th colspan="6">
+                                    <div id="btnAdd" class="ui right floated small  black labeled icon button"
+                                        routerLink="/addproject">
+                                        <i class="th icon"></i> Add New Project
+                                    </div>&nbsp;&nbsp;&nbsp;
+                                </th>
+                            </tr>
+                            <tr class="ui black">
+                                <th>Project Name</th>
+                                <th>Project Description</th>
+                                <th class="right aligned">Start Date</th>
+                                <th class="right aligned">Finish Date</th>
+                                <th class="right aligned">Type</th>
+                                <th class="right aligned">Action</th>
+                                
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="ui black" *ngFor="let objProject of projectDetails">
+                                <td>
+                                    {{ objProject.ProjectName  }}
+                                </td>
+                                <td>{{objProject.ProjectDescription }}</td>
+                                <td class="right aligned"> {{  objProject.StartDate | date: 'dd-MM-yyyy' }}</td>
+                                <td class="right aligned"> {{ objProject.FinishDate | date: 'dd-MM-yyyy' }}</td>
+                                <td class="right aligned"> {{ objProject.Type }}</td>
+                                <td class="right aligned" border="0"> <button class="ui basic button" data-confirm="Are you sure to delete this item?" (click)="deleteProject(objProject._id)" >
+								  										  
+                                    <i class="close icon"></i>
+                                </button>	</td>
+                            </tr>
+                        </tbody>
+                        <tr>
+                            <th colspan=6 class="ui centered" *ngIf="projectDetails.length==0">
+                                <div class="ui bottom attached warning message">
+                                    No Projects found. Click on the Add New Project button to add projects.
+                                </div>
+                            </th>
+                        </tr>
+                    </table>
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div class="one wide column"></div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

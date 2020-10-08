@@ -1,0 +1,44 @@
+<!-- After clicking the button open the modal dialog using open/close event binding methods -->
+<button type="button" class="btn btn-info btn-lg" (click)="openModalDialog()">Open Login Modal Dialog!</button>
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+<!-- modal -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+  <!-- modal-dialog -->
+  <div class="modal-dialog" role="document">
+    <!-- modal-content -->
+    <div class="modal-content">
+      <!-- modal-header -->
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span aria-hidden="true">&times;</span></button>
+        <!-- <h4 class="modal-title">Login</h4> -->
+      </div>
+
+      <!-- modal-body -->
+      <div class="modal-body">
+        <form [formGroup]="logedInForm" (ngSubmit) = "mdfLogin(logedInForm.value)" >
+            <div>
+                <input type="text" class="textbox" name="emailId" placeholder="Email" formControlName="emailId">
+            </div>      
+            <div>
+                <input type="password" class="textbox" name="password" placeholder="password" formControlName="password">
+            </div>
+            <div>
+                <input type="submit" class="btn btn-info btn-lg" value="LogIn" [disabled] = "!logedInForm.valid">
+            </div>
+            <div>
+                <p>EmailId Is  - {{emailId}} and Password is - {{password}}</p>
+            </div>
+        </form>
+      </div>
+
+      <!-- modal-footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModalDialog()" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"  crossorigin="anonymous"></script> -->

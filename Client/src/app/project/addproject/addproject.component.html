@@ -1,0 +1,134 @@
+<div class="container" *ngIf="auth.isLoggedIn()">
+    <div class="pusher ">
+        <div class="container">
+            <div class="ui grid stackable">
+                <!-- row 1 -->
+                <div class="twelve wide column"></div>
+                <div class="one wide column"></div>
+                <div class="twelve wide column">
+
+
+                    <h4 class="ui " style="background-color: #303030;color: white;">Manage Projects</h4>
+
+                    <div class="ui segment">
+                        <form (submit)="addProject()">
+                            <div class="ui form">
+                                <div class="fields ">
+                                    <div class="sixteen wide field">
+                                        <label>Project name</label>
+                                        <div class="ui field corner labeled input">
+                                            <input name="projectname" type="text" placeholder="Project Name"
+                                                [(ngModel)]="projectDetails.ProjectName">
+                                            <div class="ui corner label">
+                                                <i class="asterisk icon"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="fields">
+                                    <div class="sixteen wide field">
+                                        <label>Project Description</label>
+                                        <textarea name="description" rows="2" placeholder="Project Description"
+                                            [(ngModel)]="projectDetails.ProjectDescription"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="fields">
+                                    <div class="eight wide field ui calendar">
+                                        <!-- <div class="ui input left icon">
+                                            <i class="calendar icon"></i> -->
+                                            <input id="stdate" name="startdate" type="date" placeholder="Start Date"
+                                                [(ngModel)]="projectDetails.StartDate">
+                                        <!-- </div> -->
+                                    </div>
+
+                                    <div class="eight wide field ui calendar">
+                                        <!-- <div class="ui input left icon">
+                                            <i class="calendar icon"></i> -->
+                                            <input id="enddate" name="finishdate" type="date" placeholder="Finish Date"
+                                                [(ngModel)]="projectDetails.FinishDate">
+                                        <!-- </div> -->
+                                    </div>
+
+                                </div>
+
+                                <div class="fields">
+                                    <div class="sixteen wide field">
+                                        <div class="grouped fields">
+                                            <label for="type">Project Type:</label>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="type" value="pmam" checked="" tabindex="0"
+                                                        [(ngModel)]="projectDetails.Type">
+                                                    <label>PM AM Project</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="type" value="client" tabindex="0"
+                                                        [(ngModel)]="projectDetails.Type">
+                                                    <label>Client Project</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="type" value="research" tabindex="0"
+                                                        [(ngModel)]="projectDetails.Type">
+                                                    <label>Research Project</label>
+                                                </div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="ui radio checkbox">
+                                                    <input type="radio" name="type" value="support" tabindex="0"
+                                                        [(ngModel)]="projectDetails.Type">
+                                                    <label>Support Project</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="seven wide field"></div>
+                                </div>
+
+                                <div class="fields">
+                                    <div class="sixteen wide field">
+                                        <label>Cient</label>
+                                        <input name="client" type="text" placeholder="Client Name"
+                                            [(ngModel)]="projectDetails.Client">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="fields">
+                                    <div class="ten wide field">
+
+                                    </div>
+                                    <div class="ten wide field">
+                                        <button class="ui secondary button">
+                                            Save
+                                        </button>
+
+                                    </div>
+                                    <div class="ten wide field">
+                                        <button class="ui button" type="reset">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                    <div class="ten wide field">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div class="one wide column"></div>
+
+            </div>
+
+        </div> <!-- Main Container -->
+    </div> <!-- Pusher -->
+</div>

@@ -1,0 +1,179 @@
+<div class="container" *ngIf="auth.isLoggedIn()">
+    <div class="pusher">
+        <div id="timedate" align="left">&nbsp;&nbsp;
+            <a id="mon" style="color: black">{{ todayDate | date: 'MMMM'}}</a>&nbsp;
+            <a id="d" style="color: black">{{ todayDate | date: 'dd'}}</a> ,
+            <a id="y" style="color: black">{{ todayDate | date: 'yyyy'}}</a>
+            &nbsp;&nbsp;&nbsp;
+            <div class="ui buttons">
+                <button id="btnStart" class="ui button black active" *ngIf="playToggle==false"
+                    data-content="Click to Start Day" (click)="playTimeLine()">Start Day</button>
+                <button id="btnStart" class="ui button gray disabled" *ngIf="playToggle==true"
+                    data-content="Click to Start Day" (click)="playTimeLine()">Start Day</button>
+                <button id="btnPause" class="ui button gray disabled" *ngIf="playToggle==false"
+                    data-content="Click to Pause and take a break. You can Start again later"
+                    (click)="pauseTimeLine()">Pause</button>
+                <button id="btnPause" class="ui button black active" *ngIf="playToggle==true"
+                    data-content="Click to Pause and take a break. You can Start again later"
+                    (click)="pauseTimeLine()">Pause</button>
+                <div class="or"></div>
+                <button id="btnEnd" class="ui button gray disabled domOdalSurvey"
+                    data-content="Click to end the work day.">End Day</button>
+            </div>
+            &nbsp;&nbsp;<label id="ShowTodaysTime" class="ui center aligned" *ngIf="currentTime>0 && seconds>0">Time
+                Active Today
+                {{hours | number: '2.0' }} : {{ minutes | number: '2.0'}} : {{ seconds | number: '2.0'}} </label>
+        </div>
+
+        <div class="container" *ngIf="auth.isLoggedIn()">
+
+
+            <div *ngIf="taskInformation !=undefined">
+
+                <div class="ui grid stackable">
+
+                    <div class="sixteen wide column">
+                        <div id="divfloat" class="four wide column  align center">
+                            <div class="ui " data-content="Add your todays task here.">
+                                <h3>My To-Do List <i class="fa fa-plus"></i></h3>
+                            </div>
+                            <form  [formGroup]="taskForm" (ngSubmit)="addTask()">
+                                <input type="text"   formControlName="taskdescription" name="taskdescription" placeholder="Add New Todo"
+                                    [(ngModel)]="taskDetails.description" maxlength="60" onsubmit="addTask()">
+                            </form>
+                            <ul *ngFor="let taskInfo of taskInformation.tasks1">
+                                <li style='height: 50px;'>
+                                    <div class="ui flexbox regular menu inline fields">
+                                        &nbsp;
+                                        <form (submit)="deleteTask(taskInfo._id)">
+                                            <button type="submit" value="Delete "><i
+                                                    class='fa fa-trash center'></i></button>
+                                        </form>
+                                        <a id="lielements" name="lielements" class="lielements"
+                                            *ngIf="taskInfo.status == 'OPEN'" style='height: 50px;'
+                                            (click)="completeTask(taskInfo._id,taskInfo.status)">
+                                            {{taskInfo.description}} -- {{taskInfo.status}} </a>
+                                        <a id="lielements" name="lielements" class="completed lielements"
+                                            *ngIf="taskInfo.status == 'COMPLETED'" style='height: 50px;'
+                                            (click)="completeTask(taskInfo._id,taskInfo.status)">
+                                            {{taskInfo.description}} -- {{taskInfo.status}} </a>
+                                        <div class="right menu">
+                                            <a class="ui item black domOdal" data-content="Click to see comments."
+                                                (click)="saveCommentId(taskInfo._id);   openModalDialog();">
+                                                <i class="comment outline regular icon right floated"></i>
+                                                <div class="ui floating  gray label">
+                                                    {{ taskInfo.comments == undefined ? 0 : taskInfo.comments.length }}
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <ul *ngFor="let outertaskInfo of taskInformation.tasks2 | filterUnique">
+                            <div id="divfloat" class="four wide column  align center">
+                                <h3>{{outertaskInfo.userid}} To-Do List </h3>
+                                <ul *ngFor="let taskInfo of taskInformation.tasks2">
+                                    <ng-container *ngIf="taskInfo.userid == outertaskInfo.userid">
+                                        <li style='height: 50px;'>
+                                            <div class="ui flexbox regular menu inline fields">
+                                                &nbsp; {{taskInfo.description}} -- {{taskInfo.status}}
+                                                <div class="right menu inline fields basic">
+                                                    <a class="item black domOdal"
+                                                        (click)="saveCommentId(taskInfo._id);   openModalDialog();">
+                                                        <i class="comment outline regular icon right floated"></i>
+                                                        <div class="floating ui gray label">
+                                                            {{ taskInfo.comments == undefined ? 0 : taskInfo.comments.length }}
+                                                        </div>
+                                                    </a>
+                                                    <form method="POST" (submit)="addLikes(taskInfo._id)">
+                                                        <a class="item">
+                                                            <button type="submit">
+                                                                <i
+                                                                    class="thumbs up outline regular icon right floated"></i>
+                                                                <div class="floating ui gray label">
+                                                                    {{ taskInfo.likes == undefined ? 0 : taskInfo.likes.length }}
+                                                                </div>
+                                                            </button>
+                                                        </a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+                            </div>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backdrop" [ngStyle]="{'display':display}"></div>
+    <div id="dvmodal" class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}" style="height: 600px;">
+        <!-- modal-dialog -->
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <!-- modal-content -->
+            <div class="modal-content">
+                <!-- modal-header -->
+                <div class="modal-header">
+                     <!-- <button type="button" class="close" aria-label="Close" (click)="closeModalDialog()"><span
+                            aria-hidden="true">&times;</span></button>  
+                    <h4 class="modal-title">Login</h4> -->
+
+                    <h5 class="modal-title">Task Comments</h5>
+                </div>
+
+                <!-- modal-body -->
+                <div class="modal-body"  *ngIf="taskInformation !=undefined">
+                    <div class="ui comments stretched">
+                        <div class="ui form">
+                            <!--<form action="/comments/add/<%= task._id %>" method="POST">-->
+                            <form [formGroup]="commentForm" (ngSubmit)="addComments()">
+                                <div class=" inline fields">
+                                    <textarea id="text" name="text" required formControlName="text" rows="2"
+                                     placeholder="Comments..." [(ngModel)]="comments.text"></textarea>
+                                </div>
+
+                                <div class="actions">
+                                    <button type="submit" class="ui secondary black button" id="loadcomments"><i
+                                            class="icon edit"></i>Add
+                                        New</button>
+                                    <a class="ui secondary button gray" (click)="closeModalDialog()">Cancel</a>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                    <h5 class="ui dividing header white">Comments</h5>
+                    <div *ngIf="commentDetails !=undefined">
+                        <div class="ui flexbox regular menu inline fields"
+                            *ngFor="let comment of commentDetails.task.comments">
+
+                            <div class="segment basic" *ngIf="comment.profile !=undefined">
+                                <a class="avatar">	    
+                                 <img [src]="comment.profile[0].Avatar" *ngIf="comment.profile[0].Avatar != 'none'" >
+                                <i class="ui avatar user icon black big"  *ngIf= "comment.profile[0].Avatar == 'none'" ></i>
+                                </a> &nbsp;
+                             </div>
+                            <div class="segment basic inline">
+                                <a class="author">{{ comment.author.username}} </a> &nbsp; <i style="color: gray">
+                                    {{  comment.dated | date: 'MMMM-dd-yyyy' }}</i>
+                                <br />
+                                <div class="text">
+                                    {{comment.text}}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

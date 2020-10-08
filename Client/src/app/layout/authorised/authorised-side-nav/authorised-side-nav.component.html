@@ -1,0 +1,20 @@
+<nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': sideNavService.hideSideNav }">
+  <ul class="navbar-nav">
+    <li class="item active">
+      <a class="item" routerLink="/task"> <i class="home icon"></i> Home</a>
+    </li>
+    <li class="item active">
+      <a class="item" routerLink="/task"> <i class="list ul icon"></i> To Do</a>
+    </li>
+    <li class="item">
+      <a routerLink="/project">
+        <i class="th icon"></i> Project</a>
+    </li>
+    <li class="item">
+      <a class="nav-link" routerLink="/team"> <i class="users icon"></i> Teams</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/report"> <i class="chart bar outline icon"></i>Reports</a>
+    </li>
+  </ul>
+</nav>

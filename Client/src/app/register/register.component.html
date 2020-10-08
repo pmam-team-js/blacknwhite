@@ -1,0 +1,88 @@
+<br>
+<br>
+<h1>Black & White</h1>
+<h2>Nothing in Between</h2>
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2>
+            <div class="content">
+                Sign Up
+            </div>
+        </h2>
+
+        <form class="ui large form" [formGroup]="registerForm" (submit)="register()">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input" style="width: 100%;">
+                        <i class="user icon"></i>
+                        <input type="email" required name="username" placeholder="Enter Email"
+                            [(ngModel)]="credentials.username" formControlName="username"
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Email is required</div>
+                            <div *ngIf="f.username.errors.pattern">Email is not valid</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input" style="width: 100%;">
+                        <i class="lock icon"></i>
+                        <input type="password" class="form-control" required name="password"
+                            placeholder="Enter Password" [(ngModel)]="credentials.password" formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ui fluid white centered">
+                    <button type="submit"  class="ui fluid large black submit button">Sign Up</button>
+                    <!--<button class="ui black button ">Sign Up</button>--><br>
+                    <a  routerLink="/">Back to Home page</a>
+                    <div class="ui error message">test</div>
+                </div>
+            </div>
+
+
+
+
+        </form>
+    </div>
+</div>
+
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-5 mx-auto">
+            <form [formGroup]="registerForm" (submit)="register()">
+                <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" required name="username" placeholder="Enter Email"
+                        [(ngModel)]="credentials.username" formControlName="username"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Email is required</div>
+                        <div *ngIf="f.username.errors.pattern">Email is not valid</div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" required name="password" placeholder="Enter Password"
+                        [(ngModel)]="credentials.password" formControlName="password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <button [disabled]="loading" type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div> -->

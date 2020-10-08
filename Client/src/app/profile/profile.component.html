@@ -1,0 +1,125 @@
+<div class="container" *ngIf="auth.isLoggedIn()">
+    <div class="ui grid stackable">
+        <div class="one wide column  centered">&nbsp;</div>
+        <div class="sixteen wide column" >
+            <form class="ui form"    [formGroup]="profileForm" (ngSubmit)="profileUpdate()" >
+                <br>
+                <h4 class="ui dividing header" style="width:600px !important;">Personal Information</h4>
+                <div class="field" style="width:600px !important;">
+                    <label>Name</label>
+                    <div class="sixteen fields">
+                        <div class="field ui corner labeled input">
+                            <input id="firstname" type="text" name="firstname" placeholder="First Name"   [(ngModel)]="credentials.FirstName"
+                            formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }">
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="field ui corner labeled input">
+                            <input id="lastname" type="text" name="lastname" placeholder="Last Name" [(ngModel)]="credentials.LastName"
+                            formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">>
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inline fields"  style="width:600px !important;">
+                                <label>Select Avatar</label>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="avatar" value="none" tabindex="0"  [(ngModel)]="credentials.Avatar"  [ngModelOptions]="{standalone: true}">
+                                        <label><i class="ui big user outline icon"></i></label>
+                                    </div>
+                                </div>
+                                <div class="field">
+
+                                    <div class="ui radio checkbox">
+                                        <input id="avatar" type="radio" name="avatar"
+                                            value="https://semantic-ui.com/images/avatar/small/matt.jpg" tabindex="0"  [(ngModel)]="credentials.Avatar"  [ngModelOptions]="{standalone: true}">
+                                        <label><img class="ui mini avatar image"
+                                                src="https://semantic-ui.com/images/avatar/small/matt.jpg"></label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="avatar" type="radio" name="avatar"
+                                            value="https://semantic-ui.com/images/avatar/small/justen.jpg" tabindex="0"  [(ngModel)]="credentials.Avatar"  [ngModelOptions]="{standalone: true}">
+                                        <label><img class="ui mini avatar image"
+                                                src="https://semantic-ui.com/images/avatar/small/justen.jpg"></label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="avatar" type="radio" name="avatar"
+                                            value="https://semantic-ui.com/images/avatar/small/stevie.jpg" tabindex="0"  [(ngModel)]="credentials.Avatar"  [ngModelOptions]="{standalone: true}">
+                                        <label><img class="ui mini avatar image"
+                                                src="https://semantic-ui.com/images/avatar/small/stevie.jpg"></label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="avatar" type="radio" name="avatar"
+                                            value="https://semantic-ui.com/images/avatar/small/jenny.jpg" tabindex="0"  [(ngModel)]="credentials.Avatar"  [ngModelOptions]="{standalone: true}">
+                                        <label><img class="ui mini avatar image"
+                                                src="https://semantic-ui.com/images/avatar/small/jenny.jpg"></label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="avatar" type="radio" name="avatar"
+                                            value="https://semantic-ui.com/images/avatar/small/elliot.jpg" tabindex="0"  [(ngModel)]="credentials.Avatar"  [ngModelOptions]="{standalone: true}">
+                                        <label><img class="ui mini avatar image"
+                                                src="https://semantic-ui.com/images/avatar/small/elliot.jpg"></label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input id="avatar" type="radio" name="avatar"
+                                            value="https://semantic-ui.com/images/avatar/small/christian.jpg"  [ngModelOptions]="{standalone: true}"
+                                            tabindex="0"  [(ngModel)]="credentials.Avatar">
+                                        <label><img class="ui mini avatar image"
+                                                src="https://semantic-ui.com/images/avatar/small/christian.jpg"></label>
+                                    </div>
+                                </div>
+                            </div>
+               
+                <div class="field" style="width:600px !important;">
+                    <label>Role</label>
+                    <div class="one field">
+                        <div class="field ui corner labeled input">
+                        <select id="role" name="role" class="ui fluid dropdown" [(ngModel)]="credentials.Role"
+                        formControlName="role" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">>>
+                            <option value="">Role</option>
+                            <option value="Project Manager">Project Manager</option>
+                            <option value="Individual Contributor">Individual Contributor</option>
+                            <option value="Quality Assurance">Quality Assurance</option>
+                            <option value="Support">Support</option>
+                        </select>
+                        <div class="ui corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <br />
+                <div class="field" style="width:600px !important;">
+                    <div class="four fields">
+                        <button type="submit" class="ui button secondary" tabindex="0" >
+                            <i class="check icon"></i>Submit
+                        </button>
+                        <button type="submit" class="ui button" tabindex="0">
+                            <i class="close icon"></i>&nbsp;Clear
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="sixteen wide column  centered">&nbsp;</div>
+
+    </div>
+</div>
